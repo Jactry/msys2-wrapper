@@ -121,7 +121,7 @@ echo "shasum:"
 sha1sum ${NEW_MSYS2_PACKAGE}.deb
 ls
 expect -c "
-  spawn scp ${SOURCE_PATH}/build/${NEW_MSYS2_PACKAGE}.deb msys2@106.186.28.242:~/
+  spawn scp ${SOURCE_PATH}/build/${NEW_MSYS2_PACKAGE}.deb msys2@106.186.28.242:~/Dropbox/Public/msys2/
   expect {
     \"*assword\" {set timeout 300; send \"msys2\r\";}
     \"yes/no\" {send \"yes\r\"; exp_continue;}
