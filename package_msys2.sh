@@ -44,10 +44,10 @@ then
 fi
 tar xf ${SOURCE_PATH}/${MSYS2_CACHE}/${MSYS2_INSTALLER}.tar.xz
 
-# Set ustc mirror
-echo "Server = http://mirrors.ustc.edu.cn/msys2/REPOS/MSYS2/\$arch" > ${MSYS_ROOT}/etc/pacman.d/mirrorlist.msys
-echo "Server = http://mirrors.ustc.edu.cn/msys2/REPOS/MINGW/i686" > ${MSYS_ROOT}/etc/pacman.d/mirrorlist.mingw32
-echo "Server = http://mirrors.ustc.edu.cn/msys2/REPOS/MINGW/x86_64" > ${MSYS_ROOT}/etc/pacman.d/mirrorlist.mingw64
+# Set new msys2 mirror
+echo "Server = http://45.59.69.178/msys/\$arch" > ${MSYS_ROOT}/etc/pacman.d/mirrorlist.msys
+echo "Server = http://45.59.69.178/mingw/i686" > ${MSYS_ROOT}/etc/pacman.d/mirrorlist.mingw32
+echo "Server = http://45.59.69.178/mingw/x86_64" > ${MSYS_ROOT}/etc/pacman.d/mirrorlist.mingw64
 
 cd ${SOURCE_PATH}/${BUILD_USR}
 
@@ -57,10 +57,10 @@ cd ${SOURCE_PATH}/${BUILD_USR}
 ./msys2run "pacman -S --needed --noconfirm msys2-runtime pacman pacman-mirrors"
 ./msys2run "pacman -S --needed --noconfirm msys2-runtime pacman pacman-mirrors"
 
-# Set ustc mirror
-echo "Server = http://mirrors.ustc.edu.cn/msys2/REPOS/MSYS2/\$arch" > ${MSYS_ROOT}/etc/pacman.d/mirrorlist.msys
-echo "Server = http://mirrors.ustc.edu.cn/msys2/REPOS/MINGW/i686" > ${MSYS_ROOT}/etc/pacman.d/mirrorlist.mingw32
-echo "Server = http://mirrors.ustc.edu.cn/msys2/REPOS/MINGW/x86_64" > ${MSYS_ROOT}/etc/pacman.d/mirrorlist.mingw64
+# Set new msys2 mirror
+echo "Server = http://45.59.69.178/msys/\$arch" > ${MSYS_ROOT}/etc/pacman.d/mirrorlist.msys
+echo "Server = http://45.59.69.178/mingw/i686" > ${MSYS_ROOT}/etc/pacman.d/mirrorlist.mingw32
+echo "Server = http://45.59.69.178/mingw/x86_64" > ${MSYS_ROOT}/etc/pacman.d/mirrorlist.mingw64
 
 ./msys2run "pacman -Sy"
 ./msys2run "pacman -Sy"
