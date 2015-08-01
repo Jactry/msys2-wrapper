@@ -1,0 +1,22 @@
+#!/usr/bin/env
+
+# workaround wine staging bug 176
+export LC_CTYPE=en_US.utf8
+export LC_ALL=en_US.utf8
+export LANGUAGE=en_US
+
+# enable wine staging copy on write
+export STAGING_WRITECOPY=1
+
+# workaround wine staging bug 403
+export MSYS="winsymlinks=lnk"
+
+
+if test "$WINEPREFIX"
+then
+    export WINEPREFIX=${WINEPREFIX}
+else
+    export WINEPREFIX=${HOME}/.wine
+fi
+
+export MSYS_ROOT=${WINEPREFIX}/drive_c/msys32 # msys32 for 32bit msys2, msys64 for 64bit msys2

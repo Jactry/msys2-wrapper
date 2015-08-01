@@ -1,0 +1,33 @@
+#!/usr/bin/env sh
+
+set -e
+
+. /etc/msys2env
+
+MSYS2_VERSION=20150512
+MSYS2_INSTALLER=/opt/msys2/msys2-base-i686-${MSYS2_VERSION}-20150731.tar.gz
+
+DISPLAY=:88.0 WINEDEBUG=-all wineboot # hack - wineboot without display, create wineprefix in a quick way, workaround Travis CI timeout (FIXME)
+
+if ! test -f ${MSYS2_INSTALLER}
+then
+    echo "Can't find MSYS2 installer in /opt/msys2."
+    exit 1
+fi
+
+if ! test -d ${MSYS_ROOT}
+then
+    cd $WINEPREFIX/drive_c
+    tar zxf ${MSYS2_INSTALLER}
+fi
+
+msys2run "echo restart"
+
+set -x
+# make a symbolic link from unix $HOME to msys2 $HOME
+if test ${MSYS_ROOT} && ! test -L ${MSYS_ROOT}${HOME}
+then
+    mv -v ${MSYS_ROOT}${HOME} ${MSYS_ROOT}${HOME}.bak
+    ln -sfv ${HOME} ${MSYS_ROOT}${HOME}
+fi
+set +x

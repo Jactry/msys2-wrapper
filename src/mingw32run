@@ -1,0 +1,56 @@
+#!/usr/bin/env sh
+
+set -e
+
+if test -f /etc/msys2env
+then
+    . /etc/msys2env
+else
+    . ../../etc/msys2env
+fi
+
+command=$*
+
+export MSYSTEM=MINGW32
+export WINEDEBUG=fixme-all
+
+if test -d ${MSYS_ROOT}${HOME}
+then
+    cd ${MSYS_ROOT}${HOME}
+fi
+
+SCRIPT_FILE=typescript.$$
+EXIT_CODE=exit_code.$$
+
+# emulate travis_wait
+(for i in {1..60}; do sleep 60; echo timestamp:$i; done) &
+ALIVE_PING=$!
+
+(wineconsole $MSYS_ROOT/usr/bin/script.exe ${SCRIPT_FILE} -q -f -e -c "/usr/bin/bash.exe -l -e -c \"($command || echo \\\$? > ${EXIT_CODE})\"") &
+echo
+echo "Entering MSYS2 shell >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+# Emulate MSYS2 command line prompt
+echo ${USER}@${HOSTNAME} ${MSYSTEM} \~
+echo \$ $command
+tail -F ${SCRIPT_FILE} --pid=$! 2> /dev/null || return 0
+echo "Leaving MSYS2 shell <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
+echo
+
+rm -f ${SCRIPT_FILE}
+
+if test -d /proc/${ALIVE_PING}
+then
+    kill -9 ${ALIVE_PING}
+fi
+
+if test -f ${EXIT_CODE}
+then
+    # clean up
+    exit_code=$(cat ${EXIT_CODE})
+    rm -f ${EXIT_CODE}
+    echo msys2-wrapper executed \`$command\` failed with exit code ${exit_code}.
+    exit ${exit_code}
+fi
+
+echo mingw32run executed \`$command\` successfully.
+
