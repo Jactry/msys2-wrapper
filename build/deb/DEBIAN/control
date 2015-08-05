@@ -1,12 +1,12 @@
 Package: msys2-wrapper
-Version: 20150731
+Version: 20150805
 Architecture: i386
 Maintainer: Jactry Zeng <jactry92@gmail.com>
 Installed-Size: 37
 Depends: wget, wine
 Section: contrib/otherosfs
 Priority: optional
-Homepage: http://github.com/jactry
+Homepage: https://github.com/Jactry/msys2-wrapper
 Description: MSYS2 wrapper.
 
 

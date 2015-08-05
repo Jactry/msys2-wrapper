@@ -5,7 +5,7 @@ set -e
 . /etc/msys2env
 
 MSYS2_VERSION=20150512
-MSYS2_INSTALLER=/opt/msys2/msys2-base-i686-${MSYS2_VERSION}-20150731.tar.gz
+MSYS2_INSTALLER=/opt/msys2/msys2-base-i686-${MSYS2_VERSION}-20150805.tar.gz
 
 DISPLAY=:88.0 WINEDEBUG=-all wineboot # hack - wineboot without display, create wineprefix in a quick way, workaround Travis CI timeout (FIXME)
 

@@ -74,6 +74,8 @@ echo "Server = http://45.59.69.178/mingw/x86_64" > ${MSYS_ROOT}/etc/pacman.d/mir
 ./msys2run "pacman -S --needed --noconfirm git"
 ./msys2run "pacman -S --needed --noconfirm wget"
 ./msys2run "pacman -S --needed --noconfirm wget"
+./msys2run "pacman -S --needed --noconfirm mingw-w64-i686-toolchain"
+./msys2run "pacman -S --needed --noconfirm mingw-w64-i686-toolchain"
 
 # replace xz -T0 by xz -T1, workaround wine-staging bug 241 - https://bugs.wine-staging.com/show_bug.cgi?id=241
 ./msys2run "pacman -S --needed --noconfirm mingw-w64-i686-xz"
@@ -102,7 +104,7 @@ ln -s ${MSYS_ROOT}/usr/bin/msgmerge.exe ${MSYS_ROOT}/mingw32/bin/msgmerge.exe
 rm -rf ${MSYS_ROOT}/var/cache/pacman/pkg/*
 
 cd $WINEPREFIX/drive_c
-NEW_MSYS2_PACKAGE=${MSYS2_INSTALLER}-20150731
+NEW_MSYS2_PACKAGE=${MSYS2_INSTALLER}-20150805
 tar zcf ${NEW_MSYS2_PACKAGE}.tar.gz msys32
 if ! test -d ${SOURCE_PATH}/build/deb/opt/msys2/
 then
