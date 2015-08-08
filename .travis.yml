@@ -1,6 +1,10 @@
 os:
   - linux
 
+branches:
+  except:
+    - appveyor
+
 cache: apt
 
 before_install:
