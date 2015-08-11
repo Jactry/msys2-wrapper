@@ -123,4 +123,4 @@ echo "shasum:"
 sha1sum ${NEW_MSYS2_PACKAGE}.deb
 ls
 mkdir upload_dir
-mv ${SOURCE_PATH}/build/${NEW_MSYS2_PACKAGE}.deb upload_dir
+cp ${SOURCE_PATH}/build/${NEW_MSYS2_PACKAGE}.deb upload_dir
