@@ -24,3 +24,11 @@ compiler:
 script:
   - ./package_msys2.sh
   - ./test.sh
+
+deploy:
+  provider: s3
+  access_key_id: "AKIAIZAKAU64AAM53J7Q"
+  secret_access_key: "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"
+  bucket: "jactry/msys2"
+  skip_cleanup: true
+  local_dir: "build/upload_dir"
